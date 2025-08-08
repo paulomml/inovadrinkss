@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inova Drinks</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Vídeo de fundo */
+        video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* Barra de navegação */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #ffffff;
+        }
+
+        /* Logo e título */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-container img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .logo-container h1 {
+            font-size: 24px;
+        }
+
+        /* Botões centrais */
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Botão de login */
+        .login-btn {
+            background: #ff4d4d;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #cc0000;
+        }
+
+        /* Caixa de texto */
+        .info-box {
+            max-width: 90%;
+            margin: 50px auto;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 30px;
+            font-size: 18px;
+            line-height: 1.6;
+            border-radius: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-box h2 {
+            margin-bottom: 15px;
+            font-size: 22px;
+            color: #ffd700;
+        }
+
+        .info-box strong {
+            color: #ffcc00;
+        }
+
+        /* Container dos cartões */
+        .card-container {
+            max-width: 90%;
+            margin: 30px auto;
+            display: flex;
+            justify-content: space-between; /* Mantém um nas pontas e um no centro */
+            align-items: flex-start;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Estilo dos cartões */
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            overflow: hidden;
+            width: 300px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .card p {
+            padding: 15px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        /* Responsividade */
+        @media (max-width: 900px) {
+            .card-container {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+        }
+        /* Container dos pacotes */
+.pacotes-container {
+    display: flex;
+    max-width: 90%;
+    margin: 50px auto;
+    height: auto;
+    flex-direction: row;
+}
+
+/* Coluna das imagens (à esquerda) */
+.pacote-imagens {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start; /* alinha à esquerda */
+}
+
+/* Coluna dos textos (à direita) */
+.pacote-textos {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-end; /* alinha à direita */
+}
+
+/* Imagens com altura igual ao conteúdo de cada card */
+.pacote-imagens img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Cartões */
+.pacote-card {
+    background: rgba(255,255,255,0.9);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 300px;
+    flex: 1;
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+    .pacotes-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .pacote-imagens,
+    .pacote-textos {
+        width: 100%;
+        align-items: center;
+    }
+
+    .pacote-imagens img {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+    }
+
+    .pacote-card {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+.imagem-equipe {
+  width: 90%;
+  max-width: 720px;
+  margin: 0 auto;  /* centraliza todo o bloco no meio da página */
+  text-align: center; /* centraliza o texto (título) */
+}
+
+.imagem-equipe h2 {
+  margin-bottom: 10px;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.imagem-equipe img {
+  width: 100%;      /* imagem ocupa 100% do container .imagem-equipe */
+  height: auto;
+  border-radius: 15px;
+  display: block;
+  margin: 0 auto;
+}
+    </style>
+</head>
+<body>
+
+    <!-- Vídeo de fundo -->
+    <video autoplay muted loop>
+        <source src="c:\Users\paulo\Downloads\video ofc ID.mp4" type="video/mp4">
+        Seu navegador não suporta vídeo de fundo.
+    </video>
+
+    <!-- Cabeçalho -->
+    <header>
+        <!-- Logo -->
+        <div class="logo-container">
+            <img src="c:\Users\paulo\Downloads\logo.jpg.png" alt="Logo Inova Drinks">
+            <h1>Inova Drinks</h1>
+        </div>
+
+        <!-- Botões centrais -->
+        <nav>
+            <a href="#">Início</a>
+            <a href="#">Cardápio</a>
+            <a href="#">Contato</a>
+        </nav>
+
+        <!-- Botão login -->
+        <a href="#" class="login-btn">Login</a>
+    </header>
+
+    <!-- Caixa de texto -->
+    <div class="info-box">
+        <h2>Bem-vindo ao Nosso Espaço de Bebidas Exclusivas</h2>
+        <p>Seja bem-vindo ao nosso cardápio de drinks. É com grande satisfação que oferecemos uma experiência única de degustação, unindo sabores marcantes e momentos memoráveis. Prepare-se para um dia inesquecível, repleto de sofisticação, sabor e prazer.</p>
+
+        <p><strong>DESTAQUE DOS DRINKS:</strong><br>
+        <strong>BEBIDAS:</strong> Smirnoff, cachaça, licor stock, xarope monin, rum, champagne, Áspero, licor de pêssego.<br>
+        <strong>FRUTAS:</strong> Morango, kiwi, abacaxi, maracujá, limão e frutas da estação.<br>
+        <strong>OPÇÃO SEM ÁLCOOL:</strong> Não se preocupe, temos opções deliciosas para quem não bebe álcool.</p>
+
+        <p>Oferecemos serviço de open bar com drinks ilimitados durante todo o período contratado, incluindo todos os insumos necessários, conforme as opções selecionadas no cardápio.</p>
+
+        <p><strong>Observações Importantes:</strong><br>
+        A inclusão de estrutura adicional, como balcão e taças de vidro, é opcional e ficará a critério do cliente. Caso solicitada, será adicionada ao orçamento conforme o valor correspondente.<br>
+        O valor referente ao deslocamento será definido no momento da negociação.<br>
+        O valor total do serviço poderá sofrer alterações caso não sejam servidas outras bebidas além dos drinks, tornando o serviço de bar exclusivo do evento.</p>
+    </div>
+
+    <!-- Cartões de imagens -->
+    <div class="card-container">
+        <div class="card">
+            <img src="img1.jpg" alt="Drink 1">
+            <p>Drink refrescante com frutas tropicais e toque especial de licor.</p>
+        </div>
+        <div class="card">
+            <img src="img2.jpg" alt="Drink 2">
+            <p>Coquetel sofisticado com champagne e essência de morango.</p>
+        </div>
+        <div class="card">
+            <img src="img3.jpg" alt="Drink 3">
+            <p>Opção sem álcool com frutas da estação e sabor marcante.</p>
+        </div>
+    </div>
+<!-- Seção de Pacotes -->
+<section class="pacotes-container">
+    <!-- Coluna das imagens -->
+    <div class="pacote-imagens">
+        <img src="img/classico.jpg" alt="Pacote Clássico">
+        <img src="img/vip.jpg" alt="Pacote Vip">
+        <img src="img/premium.jpg" alt="Pacote Premium">
+    </div>
+
+    <!-- Coluna dos textos -->
+<div class="pacote-textos">
+    <!-- Pacote Clássico -->
+    <div class="pacote-card">
+        <h3>Pacote Clássico</h3>
+        <p>Inclui bebidas tradicionais, frutas frescas e serviço básico.</p>
+
+        <h4>Drinks</h4>
+        <ul>
+            <li><strong>Caipirinha:</strong> Limão, Açúcar, Cachaça</li>
+            <li><strong>Caipirosca:</strong> Fruta (morango, limão), Açúcar, Vodka</li>
+            <li><strong>Caipifrutas:</strong> Maracujá, Morango, Limão, Abacaxi, Açúcar, Vodka</li>
+            <li><strong>Mix da Estação:</strong> Fruta da estação, Açúcar, Vodka ou Cachaça</li>
+        </ul>
+
+        <h4>Coquetéis</h4>
+        <ul>
+            <li><strong>Tropical:</strong> Tangerina, Abacaxi, Leite condensado, Creme de leite (com ou sem álcool)</li>
+            <li><strong>Sublime:</strong> Morango, Abacaxi, Leite condensado, Creme de leite (com ou sem álcool)</li>
+            <li><strong>Grape:</strong> Uva, Abacaxi, Leite condensado, Creme de leite (com ou sem álcool)</li>
+        </ul>
+
+        <h4>Quantidade de Convidados</h4>
+        <ul>
+            <li>50 convidados</li>
+            <li>100 convidados</li>
+            <li>150 convidados</li>
+            <li>200 ou mais</li>
+        </ul>
+    </div>
+
+    <!-- Pacote Vip -->
+    <div class="pacote-card">
+        <h3>Pacote Vip</h3>
+        <p>Inclui drinks premium, opções sem álcool e serviço personalizado.</p>
+
+        <h4>Drinks</h4>
+        <ul>
+            <li><strong>Caipirinha:</strong> Limão, Açúcar, Cachaça</li>
+            <li><strong>Caipirosca:</strong> Fruta (morango, limão), Açúcar, Vodka</li>
+            <li><strong>Caipifrutas:</strong> Maracujá, Morango, Limão, Abacaxi, Açúcar, Vodka</li>
+            <li><strong>Ruby Red:</strong> Morango, Açúcar, Vodka</li>
+            <li><strong>Doçura de Kiwi:</strong> Kiwi, Licor de pêssego, Vodka, Açúcar</li>
+        </ul>
+
+        <h4>Coquetéis</h4>
+        <ul>
+            <li><strong>Blue Lagoon:</strong> Licor de curaçau, Limão, Sprite, Açúcar, Vodka</li>
+            <li><strong>Sex on the Beach:</strong> Suco de laranja, Licor de pêssego, Groselha, Vodka</li>
+            <li><strong>Tropical:</strong> Tangerina, Abacaxi, Leite condensado, Creme de leite (com ou sem álcool)</li>
+            <li><strong>Sublime:</strong> Morango, Abacaxi, Leite condensado, Creme de leite (com ou sem álcool)</li>
+        </ul>
+
+        <h4>Quantidade de Convidados</h4>
+        <ul>
+            <li>50 convidados</li>
+            <li>100 convidados</li>
+            <li>150 convidados</li>
+            <li>200 ou mais</li>
+        </ul>
+    </div>
+
+    <!-- Pacote Premium -->
+    <div class="pacote-card">
+        <h3>Pacote Premium</h3>
+        <p>Inclui champagnes, drinks exclusivos, frutas especiais e open bar ilimitado.</p>
+
+        <h4>Drinks</h4>
+        <ul>
+            <li><strong>Caipifrutas:</strong> Maracujá, Morango, Limão, Abacaxi, Açúcar, Vodka</li>
+            <li><strong>Caipirinha:</strong> Limão, Açúcar, Cachaça</li>
+            <li><strong>Caipirosca:</strong> Fruta (morango, limão), Açúcar, Vodka</li>
+            <li><strong>Mojito:</strong> Limão, Rum, Hortelã, Açúcar, Água com gás</li>
+            <li><strong>Ruby Red:</strong> Morango, Açúcar, Vodka</li>
+            <li><strong>Doçura de Kiwi:</strong> Kiwi, Licor de pêssego, Vodka, Açúcar</li>
+        </ul>
+
+        <h4>Coquetéis</h4>
+        <ul>
+            <li><strong>Sex on the Beach:</strong> Suco de laranja, Licor de pêssego, Groselha, Vodka</li>
+            <li><strong>Blue Lagoon:</strong> Licor de curaçau, Limão, Sprite, Açúcar, Vodka</li>
+            <li><strong>Moscow Mule:</strong> Suco de limão, Açúcar, Xarope de gengibre, Vodka, Espuma de gengibre</li>
+            <li><strong>Aperol Spritz:</strong> Aperol, Espumante, Água com gás</li>
+            <li><strong>Sublime:</strong> Morango, Abacaxi, Leite condensado, Creme de leite (com ou sem álcool)</li>
+        </ul>
+
+        <h4>Quantidade de Convidados</h4>
+        <ul>
+            <li>50 convidados</li>
+            <li>100 convidados</li>
+            <li>150 convidados</li>
+            <li>200 ou mais</li>
+        </ul>
+</div>
+</div>
+</div>
+</section>
+<section>
+<div class="imagem-equipe">
+  <h2>Equipe Inova Drinks</h2>
+  <img src="c:\Users\paulo\OneDrive\Desktop\inova-drinks-site\equipe.inova.jpg" alt="Equipe" />
+</div>
+
+
+</body>
+</html>
